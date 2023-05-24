@@ -1,0 +1,16 @@
+FROM alpine:3 AS base
+
+
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS build
+COPY ./api /api
+COPY ./db_queries /db_queries
+RUN dotnet publish /api/api.csproj -c "Release" -r linux-musl-x64 --no-self-contained -o /app/publish
+
+
+
+FROM base AS final
+RUN apk add -q --no-progress aspnetcore7-runtime
+COPY --from=build /app/publish /app
+ENV ASPNETCORE_ENVIRONMENT=Production
+ENTRYPOINT ["dotnet", "/app/main_server_api.dll", "--no-launch-profile"]

@@ -1,0 +1,79 @@
+{
+    "lab1":{
+        "DropDb": {
+            "Text":"Дропнуть базу",
+            "Endpoint":"/api/lab1/dropDb"
+        },
+        "CreateDb": {
+            "Text":"Создать базу",
+            "Endpoint":"/api/lab1/createDb"
+        },
+        "CreateTables": {
+            "Text":"Создать базу",
+            "Endpoint":"/api/lab1/createTables"
+        },
+        "CreateRandomData":{
+            "Text":"Наполнить случайными данными",
+            "Endpoint":"/api/lab1/generateData"
+        }
+    },
+
+
+    "lab21":{
+        "AvgFlyTime": {
+            "Text":"Запросить",
+            "Endpoint":"/api/lab2/AvgTime"
+        }
+    },
+    "lab22":{
+        "MostlySameRoute":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab2/MostlySameRoute"
+        }
+    },
+    "lab23":{
+        "MostlyEmpty70":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab2/MostlyEmpty70"
+        }
+    },
+    "lab24":{
+        "FreeSeats":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab2/FreeSeats"
+        }
+    },
+
+
+
+
+    "lab43":{
+        "TimeTable":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab4/timeTable"
+        }
+    },
+    "lab44":{
+        "ChangeCapacity":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab4/changeCapacity"
+        }
+    },
+    "lab45":{
+        "FlightsOnRoute":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab4/FlightsOnRoute"
+        }
+    },
+    "lab410":{
+        "ChangeSpeed":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab4/ChangeSpeed"
+        }
+    }
+
+
+
+
+
+}

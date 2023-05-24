@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS BrandToRoute;
+DROP TABLE IF EXISTS BrandToRouteDisctinct;
+DROP TABLE IF EXISTS BrandToRouteToCount;
+DROP TABLE IF EXISTS RouteToSoldPercent;
+DROP TABLE IF EXISTS RouteToLess70Count;
