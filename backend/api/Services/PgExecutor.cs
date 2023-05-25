@@ -119,6 +119,12 @@ public class PgExecutor
 		return await conn.QueryAsync(Templates2.FreeSeats_2p, new { p1 = routeId, p2 = dateISO8601 });
 	}
 
+	public async Task<IEnumerable<dynamic>> L4_DistanceOnRouteByPlain()
+	{
+		await using var conn = new NpgsqlConnection(this.ConnectionString);
+		return await conn.QueryAsync(Templates2.PlaneToDistanceOnRoute);
+	}
+
 	public async Task<IEnumerable<dynamic>> L4_CreateTimeTable(string from, string to)
 	{
 		await using var conn = new NpgsqlConnection(this.ConnectionString);
@@ -140,6 +146,35 @@ public class PgExecutor
 	public async Task<int> L4_ChangeSpeed(string brand, int percentChange)
 	{
 		await using var conn = new NpgsqlConnection(this.ConnectionString);
-		return await conn.ExecuteAsync(Templates4.UpdateSpeed_2p, new { p2 = brand, p1 = percentChange/100f });
+		return await conn.ExecuteAsync(Templates4.UpdateSpeed_2p, new { p2 = brand, p1 = (1 - percentChange/100f) });
+	}
+
+
+	public async Task<IEnumerable<dynamic>> L6_SelectByBrandAndCapacity(string[] brands, int minCapacity, int maxCapcity)
+	{
+		await using var conn = new NpgsqlConnection(this.ConnectionString);
+		return await conn.QueryAsync(Templates6.ByBrandAndCapacity_3p, new { p1 = brands, p2 = minCapacity, p3 = maxCapcity });
+	}
+
+
+	public async Task<IEnumerable<dynamic>> L6_SelectByLastBoardDigit(char min, char max)
+	{
+		await using var conn = new NpgsqlConnection(this.ConnectionString);
+		return await conn.QueryAsync(Templates6.ByLastBoardNumber_2p, new { p1 = min, p2 = max });
+	}
+
+
+
+	public async Task<IEnumerable<dynamic>> L6_DepartureAndFirstChar(char firstChar)
+	{
+		await using var conn = new NpgsqlConnection(this.ConnectionString);
+		return await conn.QueryAsync(Templates6.WhereDepartureAndStartsWith_1p, new { p1 = firstChar });
+	}
+
+
+	public async Task<IEnumerable<dynamic>> L6_WhereSoldN(int quantity)
+	{
+		await using var conn = new NpgsqlConnection(this.ConnectionString);
+		return await conn.QueryAsync(Templates6.WhereSoldN_1p, new { p1 = quantity });
 	}
 }

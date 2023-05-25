@@ -13,6 +13,10 @@ import Lab43 from './UI/Labs/Lab43';
 import Lab44 from './UI/Labs/Lab44';
 import Lab45 from './UI/Labs/Lab45';
 import Lab410 from './UI/Labs/Lab46(410)';
+import Lab64 from './UI/Labs/Lab64';
+import Lab61 from './UI/Labs/Lab61';
+import Lab62 from './UI/Labs/Lab62';
+import Lab63 from './UI/Labs/Lab63';
 
 const App = () => {
   axios.defaults.timeout = /*15*/ 300 * 1000
@@ -33,9 +37,14 @@ const App = () => {
         <Lab41 />
         <Lab42 />
         <Lab43 />
-        <Lab44/>
-        <Lab45/>
-        <Lab410/>
+        <Lab44 />
+        <Lab45 />
+        <Lab410 />
+
+        <Lab61 />
+        <Lab62 />
+        <Lab63 />
+        <Lab64 />
       </span>
     </span>
   );

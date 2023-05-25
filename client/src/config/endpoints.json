@@ -46,7 +46,12 @@
 
 
 
-
+    "lab42":{
+        "DistanceOnRouteByPlain":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab4/DistanceOnRouteByPlain"
+        }
+    },
     "lab43":{
         "TimeTable":{
             "Text":"Запросить",
@@ -70,7 +75,34 @@
             "Text":"Запросить",
             "Endpoint":"/api/lab4/ChangeSpeed"
         }
+    },
+
+    "lab61":{
+        "byBrandAndCapcity":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab6/byBrandAndCapcity"
+        }
+    },
+    "lab62":{
+        "SelectByLastBoardDigit":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab6/ByLastBoardDigit"
+        }
+    },
+    "lab63":{
+        "ByFirstCharDeparture":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab6/ByDepartureAndFirstChar"
+        }
+    },
+    "lab64":{
+        "WhereSoldQuantity":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab6/WhereSoldN"
+        }
     }
+
+
 
 
 

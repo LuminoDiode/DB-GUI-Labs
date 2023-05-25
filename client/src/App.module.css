@@ -90,6 +90,8 @@
   border-radius: 6px;
   padding: .33rem .66rem;
   font-size: 2rem;
+  max-height: 30rem;
+  overflow-y: scroll;
 }
 
 .inputBlock {

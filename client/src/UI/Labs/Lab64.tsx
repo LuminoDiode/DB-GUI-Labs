@@ -4,12 +4,11 @@ import { ApiHelper } from "src/helpers/ApiHelper";
 import { AxiosResponse } from 'axios';
 import { ErrorHelper } from '../../helpers/ErrorHelper';
 
-const Lab42: React.FC = () => {
+const Lab64: React.FC = () => {
     const [btnDis, setBtnDis] = useState(false);
     const [msg, setMsg] = useState("");
 
-    const [from, setFrom] = useState("Padbergport");
-    const [to, setTo] = useState("Hilllshire");
+    const [delta, setDelta] = useState("5");
 
     const doStuff = async () => {
         setMsg("Отправка запроса...");
@@ -17,7 +16,7 @@ const Lab42: React.FC = () => {
 
         let response: any;
         try {
-            response = await ApiHelper.Lab4.DistanceOnRouteByPlain();
+            response = await ApiHelper.Lab6.WhereSoldN(delta);
             console.info(response);
         } catch {
             console.info("Exception occured during the request.");
@@ -26,11 +25,9 @@ const Lab42: React.FC = () => {
             if (response)
                 ErrorHelper.handleResponseCode(response.status, response.data.detail, setMsg);
             if (response.status === 200) {
-                setMsg(response.data.map(x =>
-                    `Номер самолета: ${x.airplaneid}\n` +
-                    `Номер машрута: ${x.routeid}\n`+
-                    `Число перелетов: ${x.count}\n` +
-                    `Сумма расстояния: ${x.sum}`).join("\n\n"));
+                setMsg(response.data.map(x => `Номер рейса: ${x.routeid}\n` +
+                    `Отправление: ${x.departuretime.split('T').join(' ')}\n` +
+                    `Прибытие:       ${x.arrivaltime.split('T').join(' ')}`).join("\n\n"));
             }
         }
 
@@ -41,12 +38,14 @@ const Lab42: React.FC = () => {
     return (
         <span className={cl.labCard}>
             <span className={cl.labHeader}>
-                Работы №4.2, 4.5
+                Работа №6.4
             </span>
             <span className={cl.labText}>
-              4.2 Рассчитать дальность НАЛЕТА каждого самолета по каждому маршруту.<br/>
-              4.5 Создать сводную таблицу количества ВЫЛЕТОВ самолетов по маршрутам.
+                Вывести все перелеты, у которых число проданных билетов равно '...'.
             </span>
+            <span className={cl.inputLabel}>Бренд</span>
+                <span className={cl.inputLabel}>Число проданных билетов</span>
+                <input onChange={e => { setDelta(e.target.value) }} value={delta} className={cl.inputValue}></input>
             <span className={cl.labButtonsList}>
                 <button onClick={() => doStuff()} className={cl.labButton} disabled={btnDis}>Запросить</button>
             </span>
@@ -60,5 +59,4 @@ const Lab42: React.FC = () => {
     );
 }
 
-export default Lab42;
-
+export default Lab64;

@@ -62,4 +62,16 @@ public class Lab4Controller : ControllerBase
 			return Problem(ex.Message, statusCode: 500);
 		}
 	}
+
+
+	[HttpPost]
+	[Route("DistanceOnRouteByPlain")]
+	public async Task<IActionResult> DistanceOnRouteByPlain()
+	{
+		try {
+			return Ok(await _executor.L4_DistanceOnRouteByPlain());
+		} catch(Exception ex) {
+			return Problem(ex.Message, statusCode: 500);
+		}
+	}
 }

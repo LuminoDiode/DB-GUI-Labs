@@ -150,4 +150,14 @@ public static class Templates2
 		--         26           130                true
 	""";
 
+	public const string PlaneToDistanceOnRoute = """
+		SELECT DISTINCT Routes.Id as routeId, Airplanes.Id as airplaneId, sum(Routes.DistanceKm), count(Flights.Id) FROM (
+			Flights 
+			JOIN Routes
+			ON Flights.RouteId = Routes.Id
+			JOIN Airplanes 
+			ON Flights.AirplaneId = Airplanes.Id)
+			GROUP BY Airplanes.Id, Routes.Id;
+	""";
+
 }

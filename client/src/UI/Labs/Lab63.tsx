@@ -4,12 +4,11 @@ import { ApiHelper } from "src/helpers/ApiHelper";
 import { AxiosResponse } from 'axios';
 import { ErrorHelper } from '../../helpers/ErrorHelper';
 
-const Lab42: React.FC = () => {
+const Lab63: React.FC = () => {
     const [btnDis, setBtnDis] = useState(false);
     const [msg, setMsg] = useState("");
 
-    const [from, setFrom] = useState("Padbergport");
-    const [to, setTo] = useState("Hilllshire");
+    const [min, setMin] = useState("4");
 
     const doStuff = async () => {
         setMsg("Отправка запроса...");
@@ -17,7 +16,7 @@ const Lab42: React.FC = () => {
 
         let response: any;
         try {
-            response = await ApiHelper.Lab4.DistanceOnRouteByPlain();
+            response = await ApiHelper.Lab6.ByDepartureAndFirstChar(min);
             console.info(response);
         } catch {
             console.info("Exception occured during the request.");
@@ -26,11 +25,8 @@ const Lab42: React.FC = () => {
             if (response)
                 ErrorHelper.handleResponseCode(response.status, response.data.detail, setMsg);
             if (response.status === 200) {
-                setMsg(response.data.map(x =>
-                    `Номер самолета: ${x.airplaneid}\n` +
-                    `Номер машрута: ${x.routeid}\n`+
-                    `Число перелетов: ${x.count}\n` +
-                    `Сумма расстояния: ${x.sum}`).join("\n\n"));
+                setMsg(response.data.map(x => `Пункт: ${x.departurepoint}`).join("\n\n"));
+                if (response.data.length === 0) setMsg("Таковых нет.");
             }
         }
 
@@ -41,12 +37,14 @@ const Lab42: React.FC = () => {
     return (
         <span className={cl.labCard}>
             <span className={cl.labHeader}>
-                Работы №4.2, 4.5
+                Работа №6.3
             </span>
             <span className={cl.labText}>
-              4.2 Рассчитать дальность НАЛЕТА каждого самолета по каждому маршруту.<br/>
-              4.5 Создать сводную таблицу количества ВЫЛЕТОВ самолетов по маршрутам.
+                Вывести города, которые значатся как пункт отправления
+                в списке маршрутов и название которых начинается с буквы '...'.
             </span>
+            <span className={cl.inputLabel}>Буква</span>
+            <input onChange={e => { setMin(e.target.value) }} value={min} className={cl.inputValue}></input>
             <span className={cl.labButtonsList}>
                 <button onClick={() => doStuff()} className={cl.labButton} disabled={btnDis}>Запросить</button>
             </span>
@@ -60,5 +58,4 @@ const Lab42: React.FC = () => {
     );
 }
 
-export default Lab42;
-
+export default Lab63;
