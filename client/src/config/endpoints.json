@@ -100,12 +100,12 @@
             "Text":"Запросить",
             "Endpoint":"/api/lab6/WhereSoldN"
         }
+    },
+
+    "lab71":{
+        "WhereSoldQuantity":{
+            "Text":"Запросить",
+            "Endpoint":"/api/lab7/changeTicket"
+        }
     }
-
-
-
-
-
-
-
 }

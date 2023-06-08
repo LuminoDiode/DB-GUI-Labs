@@ -82,4 +82,13 @@ export namespace ApiHelper {
                 + `quantity=${quantity}`);
         }
     }
+
+    
+    export class Lab7 {
+        public static SwitchTicket = async (from: string, to: string) => {
+            return await axios.post(ep.lab71.WhereSoldQuantity.Endpoint + `?`
+                + `from=${from}` + `&`
+                + `to=${to}`);
+        }
+    }
 }

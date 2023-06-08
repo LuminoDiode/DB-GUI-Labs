@@ -3,6 +3,7 @@ using Dapper;
 using Npgsql;
 using System.Collections.Generic;
 using System.Data;
+using System.Transactions;
 
 namespace api.Services;
 
@@ -176,5 +177,16 @@ public class PgExecutor
 	{
 		await using var conn = new NpgsqlConnection(this.ConnectionString);
 		return await conn.QueryAsync(Templates6.WhereSoldN_1p, new { p1 = quantity });
+	}
+
+	public async Task<bool> L7_ChangeTicket(int removeFromId, int addToId)
+	{
+		await using var conn = new NpgsqlConnection(this.ConnectionString);
+		try {
+			await conn.ExecuteAsync(Templates7.ChangeTicker_2p, new { p1 = removeFromId, p2 = addToId });
+			return true;
+		} catch {
+			return false;
+		}
 	}
 }
